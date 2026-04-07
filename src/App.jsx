@@ -1,7 +1,10 @@
 import { useState, useCallback } from 'react';
+import { useAuth } from './hooks/useAuth';
 import { useTodos } from './hooks/useTodos';
 import { useCalendar } from './hooks/useCalendar';
 import { useReminders } from './hooks/useReminders';
+import { usePushSubscription } from './hooks/usePushSubscription';
+import { AuthPage } from './components/Auth/AuthPage';
 import { Header } from './components/Layout/Header';
 import { Sidebar } from './components/Layout/Sidebar';
 import { TodoList } from './components/TodoList/TodoList';
@@ -13,9 +16,12 @@ import styles from './App.module.css';
 const DEFAULT_FILTERS = { status: 'all', priority: 'all', category: 'all' };
 
 export default function App() {
-  const { todos, addTodo, updateTodo, deleteTodo, toggleComplete, getTodosByDate, getFilteredTodos, getCategories } = useTodos();
+  const { session, user, loading: authLoading, error: authError, signIn, signUp, signOut } = useAuth();
+
+  const { todos, todosLoading, addTodo, updateTodo, deleteTodo, toggleComplete, getTodosByDate, getFilteredTodos, getCategories } = useTodos(user?.id);
   const { year, month, cells, prevMonth, nextMonth, goToToday } = useCalendar();
   useReminders(todos);
+  usePushSubscription(user?.id);
 
   const [view, setView] = useState('split');
   const [selectedDate, setSelectedDate] = useState(null);
@@ -54,11 +60,33 @@ export default function App() {
     closeModal();
   }, [modal, addTodo, updateTodo, closeModal]);
 
+  // Still determining session
+  if (session === undefined) {
+    return (
+      <div className={styles.loadingScreen}>
+        <span className={styles.loadingSpinner} />
+      </div>
+    );
+  }
+
+  // Not logged in
+  if (!session) {
+    return <AuthPage onSignIn={signIn} onSignUp={signUp} loading={authLoading} error={authError} />;
+  }
+
   const filteredTodos = getFilteredTodos({ search, ...filters });
 
   return (
     <div className={styles.app}>
-      <Header view={view} onViewChange={setView} search={search} onSearch={setSearch} />
+      <Header
+        view={view}
+        onViewChange={setView}
+        search={search}
+        onSearch={setSearch}
+        userEmail={user?.email}
+        onSignOut={signOut}
+        todosLoading={todosLoading}
+      />
 
       <div className={styles.body}>
         <Sidebar

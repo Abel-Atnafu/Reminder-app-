@@ -1,11 +1,12 @@
 import styles from './Header.module.css';
 
-export function Header({ view, onViewChange, search, onSearch }) {
+export function Header({ view, onViewChange, search, onSearch, userEmail, onSignOut, todosLoading }) {
   return (
     <header className={styles.header}>
       <div className={styles.brand}>
         <span className={styles.logo}>📋</span>
         <h1 className={styles.name}>RemindMe</h1>
+        {todosLoading && <span className={styles.syncDot} title="Syncing…" />}
       </div>
 
       <div className={styles.search}>
@@ -42,6 +43,13 @@ export function Header({ view, onViewChange, search, onSearch }) {
           title="Split view"
         >
           ⊞ Split
+        </button>
+      </div>
+
+      <div className={styles.user}>
+        <span className={styles.userEmail} title={userEmail}>{userEmail}</span>
+        <button className={styles.signOutBtn} onClick={onSignOut} title="Sign out">
+          Sign out
         </button>
       </div>
     </header>
