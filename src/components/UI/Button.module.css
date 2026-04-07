@@ -1,0 +1,40 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* sizes */
+.sm { padding: 4px 10px; font-size: 13px; }
+.md { padding: 8px 16px; font-size: 14px; }
+.lg { padding: 10px 20px; font-size: 15px; }
+
+/* variants */
+.primary { background: #6366f1; color: #fff; }
+.primary:hover:not(:disabled) { background: #4f46e5; }
+
+.secondary { background: #f1f5f9; color: #334155; }
+.secondary:hover:not(:disabled) { background: #e2e8f0; }
+
+.danger { background: #ef4444; color: #fff; }
+.danger:hover:not(:disabled) { background: #dc2626; }
+
+.ghost { background: transparent; color: #6366f1; }
+.ghost:hover:not(:disabled) { background: #eff6ff; }
+
+.icon {
+  background: transparent;
+  color: #64748b;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+.icon:hover:not(:disabled) { background: #f1f5f9; color: #1e293b; }

@@ -1,0 +1,67 @@
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 4px 8px;
+  border-radius: 10px;
+  min-height: 60px;
+  transition: background 0.1s;
+  position: relative;
+  gap: 4px;
+}
+
+.inMonth { cursor: pointer; }
+.inMonth:hover { background: #f8fafc; }
+
+.outMonth {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.today .dayNum {
+  background: #6366f1;
+  color: #fff;
+}
+
+.selected {
+  background: #eff6ff !important;
+  border: 2px solid #6366f1;
+}
+
+.hasTodos .dayNum {
+  font-weight: 700;
+}
+
+.dayNum {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 400;
+  color: #334155;
+  flex-shrink: 0;
+}
+
+.dots {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.overflow {
+  font-size: 9px;
+  color: #94a3b8;
+  font-weight: 600;
+}

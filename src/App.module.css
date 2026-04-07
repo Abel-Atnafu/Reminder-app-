@@ -1,0 +1,54 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.main {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.split {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+.splitList {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #f1f5f9;
+}
+
+.splitCalendar {
+  width: 380px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  background: #fff;
+}
+
+/* Responsive: collapse sidebar and split on small screens */
+@media (max-width: 768px) {
+  .split {
+    flex-direction: column;
+  }
+  .splitCalendar {
+    width: 100%;
+    border-top: 1px solid #f1f5f9;
+    border-right: none;
+  }
+}
