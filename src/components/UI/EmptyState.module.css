@@ -1,0 +1,13 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  color: #94a3b8;
+}
+.icon { font-size: 48px; margin-bottom: 12px; }
+.message { font-size: 16px; font-weight: 500; color: #475569; margin: 0 0 6px; }
+.sub { font-size: 14px; margin: 0 0 16px; }
+.action { margin-top: 4px; }
