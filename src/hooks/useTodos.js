@@ -22,9 +22,12 @@ function createTodo(fields) {
 export function useTodos() {
   const [todos, setTodos] = useState(() => loadTodos());
 
-  const persist = useCallback((updated) => {
-    setTodos(updated);
-    saveTodos(updated);
+  const persist = useCallback((updater) => {
+    setTodos((prev) => {
+      const next = typeof updater === 'function' ? updater(prev) : updater;
+      saveTodos(next);
+      return next;
+    });
   }, []);
 
   const addTodo = useCallback((fields) => {
